@@ -14,6 +14,7 @@ Make action of submit button "Euchre" to send to Euchre.java in GameEuchre proj
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Euchre Login</title>
+        <link rel="stylesheet" type="text/css" href="Styles/Login.css">
     </head>
     <body>
         
