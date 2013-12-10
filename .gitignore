@@ -28,6 +28,12 @@ local.properties
 # PDT-specific
 .buildpath
 
+######
+#Netbeans
+######
+
+private.properties
+
 
 #################
 ## Visual Studio
@@ -213,3 +219,4 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+/Euchre/nbproject/private/private.properties
