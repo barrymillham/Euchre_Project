@@ -30,6 +30,8 @@ public class GameManager {
     {
         deck = new Stack<Card>();
         players = new HashMap<Integer, Player>();
+        trump = 's';
+        trickSuit = 'd';
         setupDeck();
     }
     
@@ -45,7 +47,7 @@ public class GameManager {
         char suit = 's';
         for(int i = 2; i < 11; ++i)
         {
-            deck.add(new Card((char)i, suit, i));
+            deck.add(new Card(Character.forDigit(i, 10), suit, i));
         }
         deck.add(new Card('j', suit, 11));
         deck.add(new Card('q', suit, 12));
@@ -54,7 +56,7 @@ public class GameManager {
         suit = 'c';
         for(int i = 2; i < 11; ++i)
         {
-            deck.add(new Card((char)i, suit, i));
+            deck.add(new Card(Character.forDigit(i, 10), suit, i));
         }
         deck.add(new Card('j', suit, 11));
         deck.add(new Card('q', suit, 12));
@@ -63,7 +65,7 @@ public class GameManager {
         suit = 'h';
         for(int i = 2; i < 11; ++i)
         {
-            deck.add(new Card((char)i, suit, i));
+            deck.add(new Card(Character.forDigit(i, 10), suit, i));
         }
         deck.add(new Card('j', suit, 11));
         deck.add(new Card('q', suit, 12));
@@ -72,7 +74,7 @@ public class GameManager {
         suit = 'd';
         for(int i = 2; i < 11; ++i)
         {
-            deck.add(new Card((char)i, suit, i));
+            deck.add(new Card(Character.forDigit(i, 10), suit, i));
         }
         deck.add(new Card('j', suit, 11));
         deck.add(new Card('q', suit, 12));
@@ -84,12 +86,12 @@ public class GameManager {
     
     public void deal()
     {
-        for(int i = 0; i < 5; ++i)
+        for(int i = 1; i < players.size()+1; ++i)
         {
-            players.get(1).addCard(deck.pop());
-            players.get(2).addCard(deck.pop());
-            players.get(3).addCard(deck.pop());
-            players.get(4).addCard(deck.pop());
+            for(int j = 0; j < 5; ++j)
+            {
+                players.get(i).addCard(deck.pop());
+            }
         }
     }
     

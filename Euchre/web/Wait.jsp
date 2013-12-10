@@ -13,6 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="Styles/Login.css">
+        <script type="text/javascript" src="./Scripts/Main.js"></script>
         <title>Waiting for the rest of the players.</title>
     </head>
     <body>
@@ -22,7 +23,7 @@
         <input name="refreshButton" type="submit" value="Refresh">
         </form>
     
-        <form action="Euchre" method="GET">
+        <div id="teamSelect">
             <fieldset>
             <legend>Select Your Team!</legend>
             <table>
@@ -37,7 +38,7 @@
             <br />
             
             <input type="hidden" name="teamed" value="true">
-            <input name="newGame" type="submit" value="Play!">
-        </form>
+            <input name="newGame" type="button" value="Play!" onclick="play()">
+        </div>
     </body>
 </html>

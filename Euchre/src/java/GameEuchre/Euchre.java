@@ -52,17 +52,18 @@ public class Euchre extends HttpServlet {
                     session.setAttribute("playerIndex", nextPlayerIndex++);
                     dispatcher = request.getRequestDispatcher("/Wait.jsp");
                     dispatcher.forward(request, response);
-                    if(gm.players.size() >= 4)
-                    {
-                        gm.deal();
-                        state = ServletState.Playing;
-                    }
                 }
                 else
                 {
                     if(request.getParameter("newGame") != null)
                     {
-                        
+                        if(gm.players.size() >= 4)
+                        {
+                            gm.deal();
+                            state = ServletState.Playing;
+                        }
+                        gm.setupTeams(1, 2, 3, 4);
+                        session.setAttribute("gm", gm);
                         dispatcher = request.getRequestDispatcher("/Playing.jsp");
                         dispatcher.forward(request, response);
                     }
@@ -84,7 +85,14 @@ public class Euchre extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        if(request.getParameter("action").equals("start"))
+        {
+            gm.setupTeams(1, 2, 3, 4);
+            gm.deal();
+            session.setAttribute("gm", gm);
+            dispatcher = request.getRequestDispatcher("/Playing.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     
