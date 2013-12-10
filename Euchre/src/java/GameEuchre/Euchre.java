@@ -53,8 +53,14 @@ public class Euchre extends HttpServlet {
                     dispatcher.forward(request, response);
                     if(gm.players.size() >= 4)
                     {
+                        gm.deal();
                         state = ServletState.Playing;
                     }
+                }
+                else
+                {
+                    dispatcher = request.getRequestDispatcher("/Wait.jsp");
+                    dispatcher.forward(request, response);
                 }
                 break;
             case Playing:
