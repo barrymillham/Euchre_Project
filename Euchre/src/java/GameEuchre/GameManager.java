@@ -31,10 +31,6 @@ public class GameManager {
         deck = new Stack<Card>();
         players = new HashMap<Integer, Player>();
         setupDeck();
-        for(int i = 1; i <= 4; ++i)
-        {
-            players.put(i, new Player(i, this));
-        }
     }
     
     public void setupTeams(int firstIDOne, int firstIDTwo, int secondIDOne, int secondIDTwo)

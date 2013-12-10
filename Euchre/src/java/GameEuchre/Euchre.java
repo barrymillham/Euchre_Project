@@ -22,17 +22,38 @@ import javax.servlet.http.HttpSession;
  */
 public class Euchre extends HttpServlet {
     HttpSession session;
+    int nextPlayerIndex = 1;
+    public enum ServletState { Idle, WaitingForPlayers, Playing };
+    ServletState state = ServletState.Idle;
+    GameManager gm;
+    RequestDispatcher dispatcher;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         session = request.getSession();
-        GameManager gm = new GameManager();
+        switch(state)
+        {
+            case Idle:
+                gm = new GameManager();
+                session.setAttribute("gm", gm);
+                gm.players.put(nextPlayerIndex, new Player(nextPlayerIndex, gm));
+                session.setAttribute("playerIndex", nextPlayerIndex++);
+                dispatcher = request.getRequestDispatcher("/Wait.jsp");
+                dispatcher.forward(request, response);
+                break;
+            case WaitingForPlayers:
+                session.setAttribute("gm", gm);
+                gm.players.put(nextPlayerIndex, new Player(nextPlayerIndex, gm));
+                session.setAttribute("playerIndex", nextPlayerIndex++);
+                dispatcher = request.getRequestDispatcher("/Wait.jsp");
+                dispatcher.forward(request, response);
+                break;
+            case Playing:
+                
+                break;
+        }
         
-        session.setAttribute("gm", gm);
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Wait.jsp");
-        dispatcher.forward(request, response);
     }
     
     
