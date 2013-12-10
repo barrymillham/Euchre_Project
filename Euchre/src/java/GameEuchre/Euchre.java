@@ -8,6 +8,7 @@ package GameEuchre;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,10 @@ public class Euchre extends HttpServlet {
         session = request.getSession();
         GameManager gm = new GameManager();
         
+        session.setAttribute("gm", gm);
         
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Wait.jsp");
+        dispatcher.forward(request, response);
     }
     
     
