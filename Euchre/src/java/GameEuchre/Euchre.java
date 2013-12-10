@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
  * 
  */
 public class Euchre extends HttpServlet {
+    
     HttpSession session;
     int nextPlayerIndex = 1;
     public enum ServletState { Idle, WaitingForPlayers, Playing };
@@ -70,7 +71,6 @@ public class Euchre extends HttpServlet {
         }
         
     }
-    
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
