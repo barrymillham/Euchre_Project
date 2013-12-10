@@ -15,11 +15,8 @@
     </head>
     <body>
         <h3>Waiting for the rest of the players to connect!</h3>
-        <%while (gm.players.size() < 4){
-           if (gm.players.size() < 4){%><h4>nope</h4>
-           <%}else{%>
-           <h4>yep</h4>
-        <%}}%>
-        <h4>yay</h4>
+        <form name="refresh" action="Euchre" method="GET">
+        <input name="refreshButton" type="submit" value="Refresh">
+        </form>
     </body>
 </html>
