@@ -24,6 +24,7 @@ public class GameManager {
     public Team teamOne;
     public Team teamTwo;
     public char trump;
+    public char trickSuit;
     
     public GameManager()
     {
@@ -33,10 +34,8 @@ public class GameManager {
         
         for(int i = 1; i <= 4; ++i)
         {
-            players.put(i, new Player(i));
+            players.put(i, new Player(i, this));
         }
-        
-        
     }
     
     public void setupTeams(int firstIDOne, int firstIDTwo, int secondIDOne, int secondIDTwo)
@@ -90,6 +89,68 @@ public class GameManager {
     
     public void deal()
     {
-        
+        for(int i = 0; i < 5; ++i)
+        {
+            players.get(1).addCard(deck.pop());
+            players.get(2).addCard(deck.pop());
+            players.get(3).addCard(deck.pop());
+            players.get(4).addCard(deck.pop());
+        }
+    }
+    
+    public void pickupCard(int callingPlayerID)
+    {
+        if(teamOne.teammateOne.playerID == callingPlayerID)
+        {
+            teamOne.didCall = true;
+            Card card = deck.pop();
+            trump = card.getSuit();
+            teamOne.teammateOne.addCard(card);
+        }
+        else if(teamOne.teammateTwo.playerID == callingPlayerID)
+        {
+            teamOne.didCall = true;
+            Card card = deck.pop();
+            trump = card.getSuit();
+            teamOne.teammateTwo.addCard(card);
+        }
+        else if(teamTwo.teammateOne.playerID == callingPlayerID)
+        {
+            teamTwo.didCall = true;
+            Card card = deck.pop();
+            trump = card.getSuit();
+            teamTwo.teammateOne.addCard(card);
+        }
+        else if(teamTwo.teammateTwo.playerID == callingPlayerID)
+        {
+            teamTwo.didCall = true;
+            Card card = deck.pop();
+            trump = card.getSuit();
+            teamTwo.teammateTwo.addCard(card);
+        }
+    }
+    
+    public void callTrump(int callingPlayerID, char suit)
+    {
+        if(teamOne.teammateOne.playerID == callingPlayerID)
+        {
+            teamOne.didCall = true;
+            trump = suit;
+        }
+        else if(teamOne.teammateTwo.playerID == callingPlayerID)
+        {
+            teamOne.didCall = true;
+            trump = suit;
+        }
+        else if(teamTwo.teammateOne.playerID == callingPlayerID)
+        {
+            teamTwo.didCall = true;
+            trump = suit;
+        }
+        else if(teamTwo.teammateTwo.playerID == callingPlayerID)
+        {
+            teamTwo.didCall = true;
+            trump = suit;
+        }
     }
 }

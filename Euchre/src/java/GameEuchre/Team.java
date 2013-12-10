@@ -12,6 +12,7 @@ package GameEuchre;
  */
 public class Team {
     public int score;
+    public Boolean didCall;
     public Player teammateOne;
     public Player teammateTwo;
     public Team(Player one, Player two)
@@ -19,5 +20,6 @@ public class Team {
         score = 0;
         teammateOne = one;
         teammateTwo = two;
+        didCall = false;
     }
 }

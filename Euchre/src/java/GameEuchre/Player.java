@@ -5,7 +5,9 @@
  */
 
 package GameEuchre;
+import java.util.Map;
 import java.util.HashMap;
+import java.util.Iterator;
 /**
  *
  * @author STOLTZFUSCJ1
@@ -13,9 +15,11 @@ import java.util.HashMap;
 public class Player {
     public int playerID;
     public HashMap<String, Card> playerHand;
+    private GameManager manager;
     
-    public Player(int id)
+    public Player(int id, GameManager m)
     {
+        manager = m;
         playerID = id;
         playerHand = new HashMap<String, Card>();
     }
@@ -25,9 +29,40 @@ public class Player {
         playerHand.put(card.getSignature(), card);
     }
     
+    public Card leadCard(int id, char suit)
+    {
+        Card playCard = playerHand.remove(buildCardSignature(id, suit));
+        manager.trickSuit = playCard.getSuit();
+        return playCard;
+    }
+    
     public Card playCard(int id, char suit)
     {
-        return playerHand.remove(buildCardSignature(id, suit));
+        if(suit == manager.trickSuit)
+        {
+            return playerHand.remove(buildCardSignature(id, suit));
+        }
+        else
+        {
+            if(isHoldingSuit(manager.trickSuit))
+            {
+                return null;
+            }
+            return playerHand.remove(buildCardSignature(id, suit));
+        }
+    }
+    
+    public Boolean isHoldingSuit(char suit)
+    {
+        for(Card card : playerHand.values())
+        {
+            if(card.getSuit() == suit)
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     public String buildCardSignature(int id, char suit) {
