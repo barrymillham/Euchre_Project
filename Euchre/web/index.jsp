@@ -13,10 +13,15 @@ Make action of submit button "Euchre" to send to Euchre.java in GameEuchre proj
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Euchre Login</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+        <form name="loginForm" action="Euchre" method="GET">
+        Username: <input type="text" name="username">
+        <input name="loginButton" type="submit" value="Login">
+        </form>
+        
     </body>
 </html>
 

@@ -65,7 +65,7 @@ public class Player {
         return false;
     }
     
-    public String buildCardSignature(int id, char suit) {
+    private String buildCardSignature(int id, char suit) {
         StringBuilder builder = new StringBuilder();
         builder.append(id);
         builder.append(suit);
