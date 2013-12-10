@@ -9,7 +9,9 @@ Make action of submit button "Euchre" to send to Euchre.java in GameEuchre proj
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
+<%session.setAttribute("page", 1);%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
