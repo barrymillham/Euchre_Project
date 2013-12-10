@@ -17,7 +17,7 @@
     </head>
     <body>
 
-        <h3>Please refresh until you see all users:</h3>
+        <h3>Please refresh until all users have joined:</h3>
         <form name="refresh" action="Euchre" method="GET">
         <input name="refreshButton" type="submit" value="Refresh">
         </form>

@@ -60,8 +60,17 @@ public class Euchre extends HttpServlet {
                 }
                 else
                 {
-                    dispatcher = request.getRequestDispatcher("/Wait.jsp");
-                    dispatcher.forward(request, response);
+                    if(request.getParameter("newGame") != null)
+                    {
+                        
+                        dispatcher = request.getRequestDispatcher("/Playing.jsp");
+                        dispatcher.forward(request, response);
+                    }
+                    else
+                    {
+                        dispatcher = request.getRequestDispatcher("/Wait.jsp");
+                        dispatcher.forward(request, response);
+                    }
                 }
                 break;
             case Playing:
