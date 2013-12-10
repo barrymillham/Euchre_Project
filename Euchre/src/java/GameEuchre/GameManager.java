@@ -5,6 +5,9 @@
  */
 
 package GameEuchre;
+import java.util.Collections;
+import java.util.Stack;
+import java.util.HashMap;
 
 /**
  *
@@ -16,5 +19,77 @@ package GameEuchre;
  * 
  */
 public class GameManager {
+    public Stack<Card> deck;
+    public HashMap<Integer, Player> players;
+    public Team teamOne;
+    public Team teamTwo;
+    public char trump;
     
+    public GameManager()
+    {
+        deck = new Stack<Card>();
+        players = new HashMap<Integer, Player>();
+        setupDeck();
+        
+        for(int i = 1; i <= 4; ++i)
+        {
+            players.put(i, new Player(i));
+        }
+        
+        
+    }
+    
+    public void setupTeams(int firstIDOne, int firstIDTwo, int secondIDOne, int secondIDTwo)
+    {
+        teamOne = new Team(players.get(firstIDOne), players.get(firstIDTwo));
+        teamTwo = new Team(players.get(secondIDOne), players.get(secondIDTwo));
+    }
+    
+    public void setupDeck()
+    {
+        deck.clear();
+        char suit = 's';
+        for(int i = 2; i < 11; ++i)
+        {
+            deck.add(new Card((char)i, suit, i));
+        }
+        deck.add(new Card('j', suit, 11));
+        deck.add(new Card('q', suit, 12));
+        deck.add(new Card('k', suit, 13));
+        deck.add(new Card('a', suit, 14));
+        suit = 'c';
+        for(int i = 2; i < 11; ++i)
+        {
+            deck.add(new Card((char)i, suit, i));
+        }
+        deck.add(new Card('j', suit, 11));
+        deck.add(new Card('q', suit, 12));
+        deck.add(new Card('k', suit, 13));
+        deck.add(new Card('a', suit, 14));
+        suit = 'h';
+        for(int i = 2; i < 11; ++i)
+        {
+            deck.add(new Card((char)i, suit, i));
+        }
+        deck.add(new Card('j', suit, 11));
+        deck.add(new Card('q', suit, 12));
+        deck.add(new Card('k', suit, 13));
+        deck.add(new Card('a', suit, 14));
+        suit = 'd';
+        for(int i = 2; i < 11; ++i)
+        {
+            deck.add(new Card((char)i, suit, i));
+        }
+        deck.add(new Card('j', suit, 11));
+        deck.add(new Card('q', suit, 12));
+        deck.add(new Card('k', suit, 13));
+        deck.add(new Card('a', suit, 14));
+        
+        Collections.shuffle(deck);
+    }
+    
+    public void deal()
+    {
+        
+    }
 }
